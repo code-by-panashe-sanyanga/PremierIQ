@@ -1,6 +1,3 @@
-from pathlib import Path
-
-from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.trustedhost import TrustedHostMiddleware
@@ -13,10 +10,6 @@ from app.security import (
     debug_enabled,
     trusted_hosts,
 )
-
-_root = Path(__file__).resolve().parents[1]
-load_dotenv(_root / ".env")
-load_dotenv(_root.parent / ".env")
 
 _debug = debug_enabled()
 app = FastAPI(
