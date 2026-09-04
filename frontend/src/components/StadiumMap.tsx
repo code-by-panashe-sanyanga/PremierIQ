@@ -195,10 +195,11 @@ export default function StadiumMap({ teams }: { teams: Team[] }) {
         const maplibre = await import("maplibre-gl");
         if (cancelled || !containerRef.current) return;
 
-        const Map = maplibre.Map ?? maplibre.default?.Map;
-        const NavigationControl = maplibre.NavigationControl ?? maplibre.default?.NavigationControl;
-        const Marker = maplibre.Marker ?? maplibre.default?.Marker;
-        const Popup = maplibre.Popup ?? maplibre.default?.Popup;
+        const lib = (maplibre as { default?: typeof maplibre }).default ?? maplibre;
+        const Map = lib.Map;
+        const NavigationControl = lib.NavigationControl;
+        const Marker = lib.Marker;
+        const Popup = lib.Popup;
 
         map = new Map({
           container: containerRef.current,
