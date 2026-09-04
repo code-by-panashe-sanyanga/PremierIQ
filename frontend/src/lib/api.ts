@@ -1,4 +1,4 @@
-const API_URL = "";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
 
 export const FORMATIONS = ["4-4-2", "4-3-3", "4-2-3-1", "3-5-2", "5-3-2", "3-4-3"] as const;
 export type Formation = (typeof FORMATIONS)[number];
@@ -284,3 +284,4 @@ export const api = {
   seasonIq: () => getJSON<SeasonIq>("/api/season/iq"),
   simulateSeason: async () => getJSON<SeasonIq>("/api/season/iq"),
 };
+
