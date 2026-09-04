@@ -192,7 +192,7 @@ export default function StadiumMap({ teams }: { teams: Team[] }) {
       if (cancelled || !container) return;
 
       try {
-        const maplibre = await import("maplibre-gl");
+        const maplibre = (await import("maplibre-gl")) as any;
         if (cancelled || !containerRef.current) return;
 
         const lib = (maplibre as { default?: typeof maplibre }).default ?? maplibre;
