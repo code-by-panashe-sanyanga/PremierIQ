@@ -139,7 +139,7 @@ function styleNightMap(map: MaplibreMap) {
           ...extrusion,
           "fill-extrusion-height": ["coalesce", ["get", "render_height"], 12],
           "fill-extrusion-base": ["coalesce", ["get", "render_min_height"], 0],
-        },
+        } as never,
       },
       labelLayerId
     );
