@@ -22,7 +22,7 @@ function venueOf(team: Team) {
 
 function tryPaint(map: MaplibreMap, id: string, prop: string, value: unknown) {
   try {
-    map.setPaintProperty(id, prop, value);
+    map.setPaintProperty(id, prop as never, value as never);
   } catch {
     /* layer does not take this paint property */
   }
