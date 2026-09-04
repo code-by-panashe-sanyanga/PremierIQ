@@ -1,6 +1,7 @@
 FROM node:22-alpine
 WORKDIR /app
-COPY package.json .
-RUN npm install
+COPY package.json package-lock.json ./
+RUN npm ci
 COPY . .
-CMD ["npm", "run", "dev"]
+RUN npm run build
+CMD ["sh", "-c", "npm run start -- -p ${PORT:-3000}"]

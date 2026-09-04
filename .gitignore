@@ -26,3 +26,4 @@ venv/
 *~
 .env.*.example
 postgres_data/
+.railway/

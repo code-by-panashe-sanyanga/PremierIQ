@@ -28,14 +28,21 @@ def debug_enabled() -> bool:
 
 def cors_origins() -> list[str]:
     raw = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000")
-    origins = [part.strip() for part in raw.split(",") if part.strip() and part.strip() != "*"]
-    return origins or ["http://localhost:3000", "http://127.0.0.1:3000"]
+    parts = [part.strip() for part in raw.split(",") if part.strip()]
+    if "*" in parts:
+        return ["*"]
+    return parts or ["http://localhost:3000", "http://127.0.0.1:3000"]
 
 
 def trusted_hosts() -> list[str]:
-    raw = os.getenv("TRUSTED_HOSTS", "localhost,127.0.0.1")
+    raw = os.getenv(
+        "TRUSTED_HOSTS",
+        "localhost,127.0.0.1,*.up.railway.app,*.railway.app",
+    )
     hosts = [part.strip() for part in raw.split(",") if part.strip()]
-    return hosts or ["localhost", "127.0.0.1"]
+    if "*" in hosts:
+        return ["*"]
+    return hosts or ["localhost", "127.0.0.1", "*.up.railway.app"]
 
 
 def redact(value: str) -> str:
