@@ -1,0 +1,9 @@
+{
+  "build": {
+    "builder": "RAILPACK"
+  },
+  "deploy": {
+    "rootDirectory": "backend"
+  }
+}
+
